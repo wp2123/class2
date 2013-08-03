@@ -1,1 +1,19 @@
 1.px像素  dp与分辨率无关与密度有关   sp字体
+
+View
+    viewGroup:LinearLayout(oritentation  gravity)  RelativeLayout(toRightOf alignParentLeft)
+    TextView EditText ImageView layoutWidth layoutHeight
+    findViewById()
+    drawable
+
+Start Activity:
+    startActivity
+    startActivityForResult
+
+Intent(意图)  IntentFilter
+
+Write File:
+    权限  File操作  Environment.getExternalStorageDirectory()方法获取sdcard路径
+
+Sqlite3操作:
+    onCreate  onUpgrade
