@@ -1,4 +1,6 @@
-log
-tmp
+bin
+gen
+.iml
 .idea
-
+.eclipse
+.setting

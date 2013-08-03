@@ -2,6 +2,8 @@ package com.android.class2;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -34,7 +36,7 @@ public class MyActivity extends Activity
 
     private void initImageDir() {
         albumDir = new File(Environment.getExternalStorageDirectory() +
-                File.separator + "android)course_class2");
+                File.separator + "android_course_class2");
         if (!albumDir.exists()) {
             albumDir.mkdirs();
         }
@@ -55,7 +57,7 @@ public class MyActivity extends Activity
         createImageFile();
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, "c://images/temp.jpeg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(fullImagePath)));
 
 //        startActivity(intent);
         startActivityForResult(intent, CAMERA_REQUEST_CODE);
@@ -83,9 +85,11 @@ public class MyActivity extends Activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) return;
-        if (requestCode == CAMERA_REQUEST_CODE && data != null) {
+        if (requestCode == CAMERA_REQUEST_CODE ) {
 //            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 //            imageView.setImageBitmap(bitmap);
+            Bitmap thumbnailBitmap = ImageUtils.decodeBitmapFromFile(fullImagePath, 100, 100);
+            imageView.setImageBitmap(thumbnailBitmap);
         }
     }
 }
